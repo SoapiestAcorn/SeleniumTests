@@ -28,4 +28,5 @@ public class GoogleAmazon {
         Assert.assertTrue(expectedResult.contains("amazon.ca"), "Failed - User is not on amazon.ca");
 
     }
+
 }

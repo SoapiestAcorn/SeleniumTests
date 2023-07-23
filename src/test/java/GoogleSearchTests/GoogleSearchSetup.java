@@ -1,5 +1,6 @@
 package GoogleSearchTests;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterSuite;
@@ -10,15 +11,14 @@ public class GoogleSearchSetup {
 
     @BeforeSuite
     public static void setup() {
-        // Setup WebDriver - will run before every class in the suite
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\AlexYoung\\OneDrive - PQA\\Documents\\Browser Drivers\\chromedriver.exe");
+        WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
     }
 
     @AfterSuite
     public static void teardown() {
-        // Close WebDriver
             driver.quit();
-        }
     }
+
+}
