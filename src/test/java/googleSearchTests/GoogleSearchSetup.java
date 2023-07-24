@@ -1,4 +1,4 @@
-package GoogleSearchTests;
+package googleSearchTests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -18,7 +18,8 @@ public class GoogleSearchSetup {
 
     @AfterSuite
     public static void teardown() {
+        if (driver != null) {
             driver.quit();
+        }
     }
-
 }
