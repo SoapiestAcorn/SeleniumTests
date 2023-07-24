@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite">
+<suite name="Alex's Test Suite">
     <test verbose="2"
           name="C:/Users/Alex Young/IdeaProjects/SeleniumTests/src/test/java/googleSearchTests">
         <classes>
-            <class name="googleSearchTests.googleSearchTests">
+            <class name="googleSearchTests.GoogleSearchTests">
                 <methods>
                     <include name="testGoogleSearchForAmazon"/>
                     <include name="testGoogleSearchForFacebook"/>

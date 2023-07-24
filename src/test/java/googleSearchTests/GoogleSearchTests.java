@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 import static googleSearchTests.GoogleSearchSetup.driver;
 
-public class googleSearchTests {
+public class GoogleSearchTests {
 
     @Test(priority = 1)
     public void testGoogleSearchForAmazon() {
