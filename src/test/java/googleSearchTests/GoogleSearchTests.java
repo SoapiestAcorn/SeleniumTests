@@ -39,6 +39,7 @@ public class GoogleSearchTests extends GoogleSearchSetup {
             test.log(Status.FAIL, errorMessage);
             throw e;
         }
+
     }
 
     @Test(
@@ -47,23 +48,22 @@ public class GoogleSearchTests extends GoogleSearchSetup {
 
     public void testGoogleSearchForFacebook() {
 
-        driver.get("https://www.google.ca");
         test.log(Status.INFO, "Step 1: Go to google.ca");
+        driver.get("https://www.google.ca");
 
+        test.log(Status.INFO, "Step 2: Google search for Facebook");
         WebElement searchBox = driver.findElement(By.className("gLFyf"));
         searchBox.sendKeys("Facebook");
         searchBox.submit();
-        test.log(Status.INFO, "Step 2: Google search for Facebook");
 
-        // Click on Facebook link
+        test.log(Status.INFO, "Step 3: Click on Facebook link");
         WebElement facebookLink = driver.findElement(By.className("LC20lb"));
         facebookLink.click();
-        test.log(Status.INFO, "Step 3: Click on Facebook link");
 
-        // Expected Result: User should be on facebook.com
+        test.log(PASS, "Expected Result: User should be on facebook.com");
         String currentUrl = driver.getCurrentUrl();
-        Assert.assertTrue(currentUrl.contains("facebook.com"), "Failed - User is not on facebook.com");
-        test.log(PASS, "Expected Result: User is on facebook.com - PASS");
+        Assert.assertTrue(currentUrl.contains("facebook.com"));
+
     }
 
 }
