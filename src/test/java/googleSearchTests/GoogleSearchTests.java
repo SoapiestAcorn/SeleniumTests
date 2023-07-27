@@ -30,7 +30,7 @@ public class GoogleSearchTests extends GoogleSearchSetup {
             WebElement amazonLink = driver.findElement(By.className("LC20lb"));
             amazonLink.click();
 
-            test.log(PASS, "Expected Result: User should be on amazon.ca");
+            test.log(INFO, "Expected Result: User should be on amazon.ca");
             String currentUrl = driver.getCurrentUrl();
             Assert.assertTrue(currentUrl.contains("amazon.ca"));
 
