@@ -6,6 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import static com.aventstack.extentreports.Status.INFO;
+import static com.aventstack.extentreports.Status.PASS;
+
 
 public class GoogleSearchTests extends GoogleSearchSetup {
 
@@ -13,28 +16,31 @@ public class GoogleSearchTests extends GoogleSearchSetup {
             description = "Validate that Google searching Amazon and clicking Amazon link should redirect user to amazon.ca ")
 
     public void testGoogleSearchForAmazon() {
+        try {
+            test.log(INFO, "Step 1: Go to google.ca");
+            driver.get("https://www.google.ca");
 
-        // Go to Google.ca
-        driver.get("https://www.google.ca");
-        test.log(Status.INFO, "Step 1: Go to google.ca");
+            test.log(Status.INFO, "Step 2: Google search for Amazon");
+            WebElement searchBox = driver.findElement(By.className("gLFyf"));
+            searchBox.sendKeys("Amazon");
+            searchBox.submit();
 
-        // Enter Amazon in search box
-        WebElement searchBox = driver.findElement(By.className("gLFyf"));
-        searchBox.sendKeys("Amazon");
-        searchBox.submit();
-        test.log(Status.INFO, "Step 2: Google search for Amazon");
+            test.log(Status.INFO, "Step 3: Click on Amazon link");
+            WebElement amazonLink = driver.findElement(By.className("LC20lb"));
+            amazonLink.click();
 
-        // Click on Amazon link
-        WebElement amazonLink = driver.findElement(By.className("LC20lb"));
-        amazonLink.click();
-        test.log(Status.INFO, "Step 3: Click on Amazon link");
+            test.log(PASS, "Expected Result: User should be on amazon.ca");
+            String currentUrl = driver.getCurrentUrl();
+            Assert.assertTrue(currentUrl.contains("amazon.ca"), "Failed - User is not on amazon.ca");
 
-        //Expected Result: User should be on amazon.ca
-        String currentUrl = driver.getCurrentUrl();
-        Assert.assertTrue(currentUrl.contains("amazon.ca"), "Failed - User is not on amazon.ca");
-        test.log(Status.PASS, "Expected Result: User is on amazon.ca - PASS");
+        } catch (AssertionError e) {
+            // Log the failure for the step that failed and include the step description in the error message
+            String errorMessage = "Step X Failed - " + e.getMessage();
+            test.log(Status.FAIL, errorMessage);
+            // Additional handling or rethrowing the exception, if needed
+            throw e;
+        }
     }
-
     @Test(priority = 2)
     public void testGoogleSearchForFacebook() {
 
@@ -54,7 +60,7 @@ public class GoogleSearchTests extends GoogleSearchSetup {
         // Expected Result: User should be on facebook.com
         String currentUrl = driver.getCurrentUrl();
         Assert.assertTrue(currentUrl.contains("facebook.com"), "Failed - User is not on facebook.com");
-        test.log(Status.PASS, "Expected Result: User is on facebook.com - PASS");
+        test.log(PASS, "Expected Result: User is on facebook.com - PASS");
     }
 
 }
