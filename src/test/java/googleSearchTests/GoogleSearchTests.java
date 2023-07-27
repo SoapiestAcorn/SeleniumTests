@@ -7,7 +7,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static com.aventstack.extentreports.Status.INFO;
-import static com.aventstack.extentreports.Status.PASS;
 
 
 public class GoogleSearchTests extends GoogleSearchSetup {
@@ -60,7 +59,7 @@ public class GoogleSearchTests extends GoogleSearchSetup {
         WebElement facebookLink = driver.findElement(By.className("LC20lb"));
         facebookLink.click();
 
-        test.log(PASS, "Expected Result: User should be on facebook.com");
+        test.log(INFO, "Expected Result: User should be on facebook.com");
         String currentUrl = driver.getCurrentUrl();
         Assert.assertTrue(currentUrl.contains("facebook.com"));
 
