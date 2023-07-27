@@ -12,8 +12,9 @@ import static com.aventstack.extentreports.Status.PASS;
 
 public class GoogleSearchTests extends GoogleSearchSetup {
 
-    @Test(priority = 1,
-            description = "Validate that Google searching Amazon and clicking Amazon link should redirect user to amazon.ca ")
+    @Test(
+            priority = 1,
+            description = "Validate that Google searching Amazon and clicking Amazon.ca link should redirect user to amazon.ca ")
 
     public void testGoogleSearchForAmazon() {
         try {
@@ -31,17 +32,19 @@ public class GoogleSearchTests extends GoogleSearchSetup {
 
             test.log(PASS, "Expected Result: User should be on amazon.ca");
             String currentUrl = driver.getCurrentUrl();
-            Assert.assertTrue(currentUrl.contains("amazon.ca"), "Failed - User is not on amazon.ca");
+            Assert.assertTrue(currentUrl.contains("amazon.ca"));
 
         } catch (AssertionError e) {
-            // Log the failure for the step that failed and include the step description in the error message
-            String errorMessage = "Step X Failed - " + e.getMessage();
+            String errorMessage = "Step X Failed: " + e.getMessage();
             test.log(Status.FAIL, errorMessage);
-            // Additional handling or rethrowing the exception, if needed
             throw e;
         }
     }
-    @Test(priority = 2)
+
+    @Test(
+            priority = 2,
+            description = "Validate that Google searching Facebook and clicking Facebook.com link should redirect user to facebook.com")
+
     public void testGoogleSearchForFacebook() {
 
         driver.get("https://www.google.ca");
